@@ -2,17 +2,19 @@
 #define _BALL_H
 
 #include <SDL2/SDL.h>
+#include <vector>
 
 class Ball{
     private:
-        int velocity;
-        int ball_pos;
+        std::vector<float> ball_pos;
+        std::vector<int> velocity;
         SDL_Rect pos;
+        void _updatePos(int, float, bool);
     public:
         Ball(int, int);
-        ~Ball();
+        ~Ball() = default;
         void draw(SDL_Renderer*);
-        void update();
+        void update(int, int, float);
 };
 
 #endif
