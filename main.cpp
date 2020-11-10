@@ -5,10 +5,11 @@ int main(int argc, char* args[]){
     
     while (!(game -> ended())) {
         game -> eventHandler();
-        game -> update();
+        game -> update(1.0/15.0);
         game -> render();
     }
 
     delete game;
+    
     return 0;
 }
