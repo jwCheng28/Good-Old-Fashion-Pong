@@ -5,7 +5,7 @@ int main(int argc, char* args[]){
     
     while (!(game -> ended())) {
         game -> eventHandler();
-        game -> update(1.0/15.0);
+        game -> update(1.0/30.0);
         game -> render();
     }
 
