@@ -1,11 +1,12 @@
 #include "paddle.hpp"
 
-Paddle::Paddle(int user, int x, int y){
+Paddle::Paddle(int user, int x, int y, SDL_Renderer* renderer){
     player = user;
     pos.x = x, pos.y = y;
     pos.w = 30, pos.h = 150;
     pad_pos = pos.y;
     direction = 0;
+    draw(renderer);
 }
 
 void Paddle::_padEve(const Uint8* keys, int upCode, int downCode){

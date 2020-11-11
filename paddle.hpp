@@ -11,7 +11,7 @@ class Paddle{
         int direction;
         void _padEve(const Uint8*, int, int);
     public:
-        Paddle(int, int, int);
+        Paddle(int, int, int, SDL_Renderer*);
         ~Paddle() = default;
         void paddleEvent();
         void update(int, float);
