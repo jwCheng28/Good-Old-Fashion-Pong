@@ -7,15 +7,18 @@
 class Ball{
     private:
         std::vector<float> ball_pos;
-        std::vector<int> velocity;
+        std::vector<float> velocity;
         SDL_Rect pos;
         void _updatePos(int, float, bool);
+        int _randVelocity();
     public:
         Ball(int, int, SDL_Renderer*);
         ~Ball() = default;
+        std::vector<float> getBallAttr();
         void draw(SDL_Renderer*);
         int backWallCollision(int);
-        int update(int, int, float);
+        void paddleBallCollision(bool, float);
+        int update(int, int, float, bool);
 };
 
 #endif
