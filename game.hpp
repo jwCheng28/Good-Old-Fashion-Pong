@@ -3,6 +3,7 @@
 
 #include "ball.hpp"
 #include "paddle.hpp"
+#include "score.hpp"
 
 class Game{
     private:
@@ -15,6 +16,7 @@ class Game{
         Ball* ball = nullptr;
         Paddle* paddle1 = nullptr;
         Paddle* paddle2 = nullptr;
+        Score* scores = nullptr;
     public:
         Game(char*, int, int);
         ~Game();
