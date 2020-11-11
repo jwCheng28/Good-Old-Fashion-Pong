@@ -28,14 +28,25 @@ void Paddle::paddleEvent(){
 
 void Paddle::update(int winh, float fr){
     if (direction > 0 && pad_pos > 10) {
-        pad_pos -= (2.0 * fr);
+        pad_pos -= (14.0 * fr);
         pos.y = pad_pos;
     } else if (direction < 0 && (pad_pos + pos.h) < (winh - 10)) {
-        pad_pos += (2.0 * fr);
+        pad_pos += (14.0 * fr);
         pos.y = pad_pos;
     }
 }
 
 void Paddle::draw(SDL_Renderer* renderer){
     SDL_RenderFillRect(renderer, &pos);
+}
+
+// ballAttr = [x, y, w, h]
+bool Paddle::paddleHit(std::vector<float> ballAttr){
+    bool xbound;
+    bool ybound = ballAttr[1] <= pos.y + pos.h && ballAttr[1] + ballAttr[3] >= pos.y;
+    if (player == 1)
+        xbound = ballAttr[0] <= pos.x + pos.w;
+    else
+        xbound = ballAttr[0] + ballAttr[2] >= pos.x;
+    return ybound && xbound;
 }

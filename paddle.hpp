@@ -2,6 +2,7 @@
 #define _PADDLE_H
 
 #include <SDL2/SDL.h>
+#include <vector>
 
 class Paddle{
     private:
@@ -16,6 +17,7 @@ class Paddle{
         void paddleEvent();
         void update(int, float);
         void draw(SDL_Renderer*);
+        bool paddleHit(std::vector<float>);
 };
 
 #endif
