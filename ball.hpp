@@ -11,10 +11,11 @@ class Ball{
         SDL_Rect pos;
         void _updatePos(int, float, bool);
     public:
-        Ball(int, int);
+        Ball(int, int, SDL_Renderer*);
         ~Ball() = default;
         void draw(SDL_Renderer*);
-        void update(int, int, float);
+        int backWallCollision(int);
+        int update(int, int, float);
 };
 
 #endif
