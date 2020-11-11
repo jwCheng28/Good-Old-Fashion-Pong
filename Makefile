@@ -1,10 +1,12 @@
 CC = g++ -std=c++14
 FLAGS = -g -w
-SDL_FLAGS = -lmingw32 -lSDL2main -lSDL2
+SDL_FLAGS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_ttf
 ALL = $(CC) $(FLAGS) 
 exe_file = pong.exe
-$(exe_file): paddle.o ball.o game.o main.o
-	$(ALL) paddle.o ball.o game.o main.o -o $(exe_file) $(SDL_FLAGS)
+$(exe_file): score.o paddle.o ball.o game.o main.o
+	$(ALL) score.o paddle.o ball.o game.o main.o -o $(exe_file) $(SDL_FLAGS)
+score.o: score.cpp
+	$(ALL) -c score.cpp $(SDL_FLAGS)
 paddle.o: paddle.cpp
 	$(ALL) -c paddle.cpp $(SDL_FLAGS)
 ball.o: ball.cpp
