@@ -55,7 +55,10 @@ void Game::render(){
 }
 
 void Game::update(float fr){
-    int bwc = ball -> update(WIDTH, HEIGHT, fr);
+    std::vector<float> ballAttr = ball -> getBallAttr();
+    bool pbc1 = paddle1 -> paddleHit(ballAttr);
+    bool pbc2 = paddle2 -> paddleHit(ballAttr);
+    int bwc = ball -> update(WIDTH, HEIGHT, fr, pbc1 || pbc2);
     if (bwc < 0)
         scores -> increaseScore(2);
     else if (bwc > 0)
