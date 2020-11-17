@@ -27,13 +27,11 @@ void Paddle::paddleEvent(){
 }
 
 void Paddle::update(int winh, float fr){
-    if (direction > 0 && pad_pos > 10) {
-        pad_pos -= (14.0 * fr);
-        pos.y = pad_pos;
-    } else if (direction < 0 && (pad_pos + pos.h) < (winh - 10)) {
-        pad_pos += (14.0 * fr);
-        pos.y = pad_pos;
-    }
+    if (direction > 0 && pad_pos > 10)
+        pad_pos -= (20.0 * fr);
+    else if (direction < 0 && (pad_pos + pos.h) < (winh - 10))
+        pad_pos += (20.0 * fr);
+    pos.y = pad_pos;
 }
 
 void Paddle::draw(SDL_Renderer* renderer){
