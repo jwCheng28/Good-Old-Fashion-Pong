@@ -10,7 +10,6 @@ class Ball{
         std::vector<float> velocity;
         SDL_Rect pos;
         void _updatePos(int, float, bool);
-        int _randVelocity();
     public:
         Ball(int, int, SDL_Renderer*);
         ~Ball() = default;
