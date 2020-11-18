@@ -18,5 +18,9 @@ main.o: main.cpp
 
 clean:
 	rm -f *.o $(exe_file)
+cleano:
+	rm -f *.o
 cleanw:
 	del /Q *.o $(exe_file)
+cleanwo:
+	del /Q *.o
