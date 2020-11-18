@@ -18,12 +18,14 @@ void Paddle::_padEve(const Uint8* keys, int upCode, int downCode){
         direction = 0; 
 }
 
-void Paddle::paddleEvent(){
+void Paddle::paddleEvent(std::vector<float>ballAttr){
     const Uint8* keys = SDL_GetKeyboardState(nullptr);
     if (player == 1)
         _padEve(keys, SDL_SCANCODE_W, SDL_SCANCODE_S);
-    else
+    else if (player == 2)
         _padEve(keys, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN);
+    else if (player == 3)
+        weakAImovement(ballAttr);
 }
 
 void Paddle::update(int winh, float fr){
@@ -47,4 +49,15 @@ bool Paddle::paddleHit(std::vector<float> ballAttr){
     else
         xbound = ballAttr[0] + ballAttr[2] >= pos.x;
     return ybound && xbound;
+}
+
+void Paddle::weakAImovement(std::vector<float>ballAttr){
+    float ballCenter = ballAttr[1] + (ballAttr[3] / 2);
+    float padCenter = pad_pos + (pos.h / 2);
+    if (padCenter > ballCenter)
+        direction = 1;
+    else if (padCenter < ballCenter)
+        direction = -1;
+    else
+        direction = 0;
 }

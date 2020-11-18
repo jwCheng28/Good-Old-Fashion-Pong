@@ -14,10 +14,11 @@ class Paddle{
     public:
         Paddle(int, int, int, SDL_Renderer*);
         ~Paddle() = default;
-        void paddleEvent();
+        void paddleEvent(std::vector<float>);
         void update(int, float);
         void draw(SDL_Renderer*);
         bool paddleHit(std::vector<float>);
+        void weakAImovement(std::vector<float>);
 };
 
 #endif
