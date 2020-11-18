@@ -18,7 +18,7 @@ class Game{
         Paddle* paddle2 = nullptr;
         Score* scores = nullptr;
     public:
-        Game(char*, int, int);
+        Game(char*, int, int, bool);
         ~Game();
         void eventHandler();
         void render();

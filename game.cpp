@@ -1,7 +1,7 @@
 #include <iostream>
 #include "game.hpp"
 
-Game::Game(char* title, int win_width, int win_height){
+Game::Game(char* title, int win_width, int win_height, bool AI){
     WIDTH = win_width, HEIGHT = win_height;
     if (!SDL_Init(SDL_INIT_VIDEO)) {
         TTF_Init();
@@ -12,7 +12,7 @@ Game::Game(char* title, int win_width, int win_height){
         
         ball = new Ball((WIDTH - 20)/2, (HEIGHT - 20)/2, renderer);
         paddle1 = new Paddle(1, 40, (HEIGHT - 150)/2, renderer);
-        paddle2 = new Paddle(2, WIDTH - 70, (HEIGHT - 150)/2, renderer);
+        paddle2 = new Paddle(AI ? 3 : 2, WIDTH - 70, (HEIGHT - 150)/2, renderer);
         scores = new Score(WIDTH, renderer);
         
         running = true;
@@ -36,8 +36,8 @@ void Game::eventHandler(){
     SDL_PollEvent(&event);
     if (event.type == SDL_QUIT)
         running = false;
-    paddle1 -> paddleEvent();
-    paddle2 -> paddleEvent();
+    paddle1 -> paddleEvent({});
+    paddle2 -> paddleEvent(ball -> getBallAttr());
 }
 
 void Game::render(){
