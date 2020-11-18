@@ -6,4 +6,4 @@ As the title suggest, this project that aims to recreated the classic Pong Game.
 
 ## To Do
 - Win Condition 
-- Code Clean Up?  
+- Different Modes
