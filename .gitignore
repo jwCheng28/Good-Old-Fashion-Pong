@@ -2,6 +2,7 @@
 *.out
 *.mp4
 
+cmake/*.cmake
 lib/
 CMakeLists.txt.user
 CMakeCache.txt
