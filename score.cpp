@@ -4,7 +4,7 @@
 
 Score::Score(int winw, SDL_Renderer* renderer){
     winWidth = winw;
-    font = TTF_OpenFont("assets/Grand9KPixel.ttf", 35);
+    font = TTF_OpenFont("../assets/Grand9KPixel.ttf", 35);
     scores = {0, 0};
     surfaces = {nullptr, nullptr};
     textures = {nullptr, nullptr};
