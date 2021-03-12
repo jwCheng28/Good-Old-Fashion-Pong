@@ -2,13 +2,13 @@
 *.out
 *.mp4
 
-cmake/*.cmake
+CMake_version/cmake/*.cmake
 lib/
 CMakeLists.txt.user
 CMakeCache.txt
 CMakeFiles
 CMakeScripts
-Cmake_ver/Makefile
+CMake_version/Makefile
 Testing
 cmake_install.cmake
 install_manifest.txt
