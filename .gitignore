@@ -1,13 +1,11 @@
 *.o
 *.out
-*.exe
 *.mp4
 
 CMakeLists.txt.user
 CMakeCache.txt
 CMakeFiles
 CMakeScripts
-Makefile
 Testing
 cmake_install.cmake
 install_manifest.txt
