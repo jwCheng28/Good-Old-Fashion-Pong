@@ -1,6 +1,0 @@
-Necessary cmake are:
-FindSDL2.cmake
-FindSDL2_TTF.cmake
-
-Depending on system, this might vary.
-These cmake files could also be found online if not provided already by cmake.
