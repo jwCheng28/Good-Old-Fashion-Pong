@@ -37,8 +37,8 @@ void Game::eventHandler() {
     SDL_PollEvent(&event);
     if (event.type == SDL_QUIT)
         running = false;
-    paddle1 -> paddleEvent({});
-    paddle2 -> paddleEvent(ball -> getBallAttr());
+    paddle1->paddleEvent({});
+    paddle2->paddleEvent(ball->getBallAttr());
 }
 
 void Game::render() {
@@ -47,23 +47,23 @@ void Game::render() {
     
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     SDL_RenderDrawLine(renderer, WIDTH/2, 0, WIDTH/2, HEIGHT);
-    ball -> draw(renderer);
-    paddle1 -> draw(renderer);
-    paddle2 -> draw(renderer);
-    scores -> draw(renderer, 0);
+    ball->draw(renderer);
+    paddle1->draw(renderer);
+    paddle2->draw(renderer);
+    scores->draw(renderer, 0);
     
     SDL_RenderPresent(renderer);
 }
 
 void Game::update(float fr) {
-    std::vector<float> ballAttr = ball -> getBallAttr();
-    bool pbc1 = paddle1 -> paddleHit(ballAttr);
-    bool pbc2 = paddle2 -> paddleHit(ballAttr);
-    int bwc = ball -> update(WIDTH, HEIGHT, fr, pbc1 || pbc2);
+    std::vector<float> ballAttr = ball->getBallAttr();
+    bool pbc1 = paddle1->paddleHit(ballAttr);
+    bool pbc2 = paddle2->paddleHit(ballAttr);
+    int bwc = ball->update(WIDTH, HEIGHT, fr, pbc1 || pbc2);
     if (bwc < 0)
-        scores -> increaseScore(2);
+        scores->increaseScore(2);
     else if (bwc > 0)
-        scores -> increaseScore(1);
+        scores->increaseScore(1);
     if (scores->getScore(1) >= 11) {
         std::cout << "Player 1 Wins\n";
         running = false;
@@ -72,8 +72,8 @@ void Game::update(float fr) {
         running = false;
     }
     
-    paddle1 -> update(HEIGHT, fr);
-    paddle2 -> update(HEIGHT, fr);
+    paddle1->update(HEIGHT, fr);
+    paddle2->update(HEIGHT, fr);
 }
 
 bool Game::ended() {

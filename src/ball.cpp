@@ -26,10 +26,10 @@ void Ball::draw(SDL_Renderer* renderer) {
 
 int Ball::backWallCollision(int winw) {
     // Left Wall Collision
-    if (ball_pos[0] <= 0)
+    if (ball_pos[0] <= 5)
         return -1;
     // Right Wall Collision
-    else if (ball_pos[0] >= winw)
+    else if (ball_pos[0] >= winw-20)
         return 1;
 }
 

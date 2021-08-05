@@ -36,8 +36,8 @@ void Score::_destroy(int user) {
 }
 
 void Score::_setDisplayPos(int user, std::vector<SDL_Surface*> surfaces) {
-    twidth = surfaces[user] -> w;
-    theight = surfaces[user] -> h;
+    twidth = surfaces[user]->w;
+    theight = surfaces[user]->h;
     text[user].w = twidth;
     text[user].h = theight;
     if (user == 1)
