@@ -1,12 +1,13 @@
 #include <iostream>
+#include <string>
 #include "game.hpp"
 
-Game::Game(char* title, int win_width, int win_height, bool AI){
+Game::Game(std::string title, int win_width, int win_height, bool AI) {
     WIDTH = win_width, HEIGHT = win_height;
     if (!SDL_Init(SDL_INIT_VIDEO)) {
         TTF_Init();
         window = SDL_CreateWindow(
-                 title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 
+                 title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 
                  WIDTH, HEIGHT, SDL_WINDOW_SHOWN);
         renderer = SDL_CreateRenderer(window, -1, 0);
         
@@ -21,7 +22,7 @@ Game::Game(char* title, int win_width, int win_height, bool AI){
     }
 }
 
-Game::~Game(){
+Game::~Game() {
     delete ball;
     delete paddle1;
     delete paddle2;
@@ -32,7 +33,7 @@ Game::~Game(){
     TTF_Quit();
 }
 
-void Game::eventHandler(){
+void Game::eventHandler() {
     SDL_PollEvent(&event);
     if (event.type == SDL_QUIT)
         running = false;
@@ -40,7 +41,7 @@ void Game::eventHandler(){
     paddle2 -> paddleEvent(ball -> getBallAttr());
 }
 
-void Game::render(){
+void Game::render() {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
     SDL_RenderClear(renderer);
     
@@ -54,7 +55,7 @@ void Game::render(){
     SDL_RenderPresent(renderer);
 }
 
-void Game::update(float fr){
+void Game::update(float fr) {
     std::vector<float> ballAttr = ball -> getBallAttr();
     bool pbc1 = paddle1 -> paddleHit(ballAttr);
     bool pbc2 = paddle2 -> paddleHit(ballAttr);
@@ -63,11 +64,18 @@ void Game::update(float fr){
         scores -> increaseScore(2);
     else if (bwc > 0)
         scores -> increaseScore(1);
+    if (scores->getScore(1) >= 11) {
+        std::cout << "Player 1 Wins\n";
+        running = false;
+    } else if (scores->getScore(2) >= 11) {
+        std::cout << "Player 2 Wins\n";
+        running = false;
+    }
     
     paddle1 -> update(HEIGHT, fr);
     paddle2 -> update(HEIGHT, fr);
 }
 
-bool Game::ended(){
+bool Game::ended() {
     return !running;
 }

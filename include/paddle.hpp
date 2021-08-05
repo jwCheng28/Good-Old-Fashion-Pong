@@ -4,7 +4,7 @@
 #include <SDL2/SDL.h>
 #include <vector>
 
-class Paddle{
+class Paddle {
     private:
         SDL_Rect pos;
         int player;

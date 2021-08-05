@@ -5,7 +5,7 @@
 #include <SDL2/SDL_ttf.h>
 #include <vector>
 
-class Score{
+class Score {
     private:
         int twidth;
         int theight;
@@ -22,6 +22,7 @@ class Score{
         Score(int, SDL_Renderer*);
         ~Score();
         void increaseScore(int);
+        int getScore(int);
         void draw(SDL_Renderer*, bool);
 };
 

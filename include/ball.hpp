@@ -4,7 +4,7 @@
 #include <SDL2/SDL.h>
 #include <vector>
 
-class Ball{
+class Ball {
     private:
         std::vector<float> ball_pos;
         std::vector<float> velocity;

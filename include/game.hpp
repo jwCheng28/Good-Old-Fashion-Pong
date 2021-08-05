@@ -1,11 +1,12 @@
 #ifndef _GAME_H
 #define _GAME_H
 
+#include <string>
 #include "ball.hpp"
 #include "paddle.hpp"
 #include "score.hpp"
 
-class Game{
+class Game {
     private:
         int WIDTH;
         int HEIGHT;
@@ -18,7 +19,7 @@ class Game{
         Paddle* paddle2 = nullptr;
         Score* scores = nullptr;
     public:
-        Game(char*, int, int, bool);
+        Game(std::string, int, int, bool);
         ~Game();
         void eventHandler();
         void render();

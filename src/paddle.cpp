@@ -1,6 +1,6 @@
 #include "paddle.hpp"
 
-Paddle::Paddle(int user, int x, int y, SDL_Renderer* renderer){
+Paddle::Paddle(int user, int x, int y, SDL_Renderer* renderer) {
     player = user;
     pos.x = x, pos.y = y;
     pos.w = 30, pos.h = 150;
@@ -9,7 +9,7 @@ Paddle::Paddle(int user, int x, int y, SDL_Renderer* renderer){
     draw(renderer);
 }
 
-void Paddle::_padEve(const Uint8* keys, int upCode, int downCode){
+void Paddle::_padEve(const Uint8* keys, int upCode, int downCode) {
     if (keys[upCode])
         direction = 1;
     else if (keys[downCode])
@@ -18,7 +18,7 @@ void Paddle::_padEve(const Uint8* keys, int upCode, int downCode){
         direction = 0; 
 }
 
-void Paddle::paddleEvent(std::vector<float>ballAttr){
+void Paddle::paddleEvent(std::vector<float>ballAttr) {
     const Uint8* keys = SDL_GetKeyboardState(nullptr);
     if (player == 1)
         _padEve(keys, SDL_SCANCODE_W, SDL_SCANCODE_S);
@@ -28,7 +28,7 @@ void Paddle::paddleEvent(std::vector<float>ballAttr){
         weakAImovement(ballAttr);
 }
 
-void Paddle::update(int winh, float fr){
+void Paddle::update(int winh, float fr) {
     if (direction > 0 && pad_pos > 10)
         pad_pos -= (20.0 * fr);
     else if (direction < 0 && (pad_pos + pos.h) < (winh - 10))
@@ -36,12 +36,12 @@ void Paddle::update(int winh, float fr){
     pos.y = pad_pos;
 }
 
-void Paddle::draw(SDL_Renderer* renderer){
+void Paddle::draw(SDL_Renderer* renderer) {
     SDL_RenderFillRect(renderer, &pos);
 }
 
 // ballAttr = [x, y, w, h]
-bool Paddle::paddleHit(std::vector<float> ballAttr){
+bool Paddle::paddleHit(std::vector<float> ballAttr) {
     bool xbound;
     bool ybound = ballAttr[1] <= pos.y + pos.h && ballAttr[1] + ballAttr[3] >= pos.y;
     if (player == 1)
@@ -51,7 +51,7 @@ bool Paddle::paddleHit(std::vector<float> ballAttr){
     return ybound && xbound;
 }
 
-void Paddle::weakAImovement(std::vector<float>ballAttr){
+void Paddle::weakAImovement(std::vector<float>ballAttr) {
     float ballCenter = ballAttr[1] + (ballAttr[3] / 2);
     float padCenter = pad_pos + (pos.h / 2);
     if (padCenter > ballCenter)

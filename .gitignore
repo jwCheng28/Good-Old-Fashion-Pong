@@ -2,17 +2,8 @@
 *.out
 *.mp4
 
-CMake_version/
-CMake_version/cmake/*.cmake
 lib/
-CMakeLists.txt.user
-CMakeCache.txt
-CMakeFiles
-CMakeScripts
-CMake_version/Makefile
-Testing
-cmake_install.cmake
-install_manifest.txt
-compile_commands.json
-CTestTestfile.cmake
-_deps
+
+*.cmake
+CMake*
+cmake/

@@ -2,9 +2,10 @@
 #include <string>
 #include "score.hpp"
 
-Score::Score(int winw, SDL_Renderer* renderer){
+Score::Score(int winw, SDL_Renderer* renderer) {
     winWidth = winw;
-    font = TTF_OpenFont("../assets/Grand9KPixel.ttf", 35);
+    font = TTF_OpenFont("assets/Grand9KPixel.ttf", 35);
+    if (font == nullptr) font = TTF_OpenFont("../assets/Grand9KPixel.ttf", 35);
     scores = {0, 0};
     surfaces = {nullptr, nullptr};
     textures = {nullptr, nullptr};
@@ -15,17 +16,21 @@ Score::Score(int winw, SDL_Renderer* renderer){
     draw(renderer, 1);
 }
 
-Score::~Score(){
+Score::~Score() {
     _destroy(0);
     _destroy(1);
     TTF_CloseFont(font);
 }
 
-void Score::increaseScore(int user){
+void Score::increaseScore(int user) {
     user == 1 ? scores[0]++ : scores[1]++;
 }
 
-void Score::_destroy(int user){
+int Score::getScore(int user) {
+    return user == 1 ? scores[0] : scores[1];
+}
+
+void Score::_destroy(int user) {
     SDL_FreeSurface(surfaces[user]);
     SDL_DestroyTexture(textures[user]);
 }
@@ -39,7 +44,7 @@ void Score::_setDisplayPos(int user, std::vector<SDL_Surface*> surfaces) {
         text[user].x = winWidth/2 + (200 - twidth);
 }
 
-void Score::_draw(int user, SDL_Renderer* renderer, bool initial){
+void Score::_draw(int user, SDL_Renderer* renderer, bool initial) {
     if (!initial)
         _destroy(user);
 
@@ -53,7 +58,7 @@ void Score::_draw(int user, SDL_Renderer* renderer, bool initial){
     SDL_RenderCopy(renderer, textures[user], nullptr, &text[user]);
 }
 
-void Score::draw(SDL_Renderer* renderer, bool initial){
+void Score::draw(SDL_Renderer* renderer, bool initial) {
     _draw(0, renderer, initial);
     _draw(1, renderer, initial);
 }

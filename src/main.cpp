@@ -1,7 +1,7 @@
-#include "game.hpp"
 #include <string>
+#include "game.hpp"
 
-int main(int argc, char* args[]){
+int main(int argc, char* args[]) {
     bool AI = (argc > 1 && args[1] == std::string("True"));
     Game *game = new Game("Pong", 1400, 800, AI);
 
