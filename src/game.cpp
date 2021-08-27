@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <memory>
 #include "game.hpp"
 
 Game::Game(std::string title, int win_width, int win_height, bool AI) {
@@ -11,10 +12,10 @@ Game::Game(std::string title, int win_width, int win_height, bool AI) {
                  WIDTH, HEIGHT, SDL_WINDOW_SHOWN);
         renderer = SDL_CreateRenderer(window, -1, 0);
         
-        ball = new Ball((WIDTH - 20)/2, (HEIGHT - 20)/2, renderer);
-        paddle1 = new Paddle(1, 40, (HEIGHT - 150)/2, renderer);
-        paddle2 = new Paddle(AI ? 3 : 2, WIDTH - 70, (HEIGHT - 150)/2, renderer);
-        scores = new Score(WIDTH, renderer);
+        ball = std::make_unique<Ball>((WIDTH - 20)/2, (HEIGHT - 20)/2, renderer);
+        paddle1 = std::make_unique<Paddle>(1, 40, (HEIGHT - 150)/2, renderer);
+        paddle2 = std::make_unique<Paddle>(AI ? 3 : 2, WIDTH - 70, (HEIGHT - 150)/2, renderer);
+        scores = std::make_unique<Score>(WIDTH, renderer);
         
         running = true;
     } else {
@@ -23,10 +24,6 @@ Game::Game(std::string title, int win_width, int win_height, bool AI) {
 }
 
 Game::~Game() {
-    delete ball;
-    delete paddle1;
-    delete paddle2;
-    delete scores;
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
     SDL_Quit();

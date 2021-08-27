@@ -2,6 +2,7 @@
 #define _GAME_H
 
 #include <string>
+#include <memory>
 #include "ball.hpp"
 #include "paddle.hpp"
 #include "score.hpp"
@@ -14,10 +15,10 @@ class Game {
         SDL_Window* window;
         SDL_Renderer* renderer;
         SDL_Event event;
-        Ball* ball = nullptr;
-        Paddle* paddle1 = nullptr;
-        Paddle* paddle2 = nullptr;
-        Score* scores = nullptr;
+        std::unique_ptr<Ball> ball;
+        std::unique_ptr<Paddle> paddle1;
+        std::unique_ptr<Paddle> paddle2;
+        std::unique_ptr<Score> scores;
     public:
         Game(std::string, int, int, bool);
         ~Game();
