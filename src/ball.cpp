@@ -33,16 +33,16 @@ int Ball::backWallCollision(int winw) {
         return 1;
 }
 
-void Ball::paddleBallCollision(bool pbc, float fr) {
-    if (pbc) {
+void Ball::paddleBallCollision(bool paddleCollision, float frame_rate) {
+    if (paddleCollision) {
         velocity[0] *= (velocity[0] < 18) ? -1.25 : -1;
         _updatePos(0, 3, 0);
     }
 }
 
-void Ball::_updatePos(int ax, float fr, bool randC) {
+void Ball::_updatePos(int ax, float frame_rate, bool randC) {
     int C = (randC ? rand() % 5 + 2 : 1);
-    ball_pos[ax] += (C * velocity[ax] * fr); 
+    ball_pos[ax] += (C * velocity[ax] * frame_rate); 
     if (!ax)
         pos.x = ball_pos[ax];
     else
@@ -50,18 +50,18 @@ void Ball::_updatePos(int ax, float fr, bool randC) {
 }
 
 
-int Ball::update(int winw, int winh, float fr, bool pbc) {
+int Ball::update(int winw, int winh, float frame_rate, bool paddleCollision) {
     bool x_bound = ball_pos[0] > 0 && ball_pos[0] < (winw - 20);
     bool y_bound = ball_pos[1] > 5 && ball_pos[1] < (winh - 5);
     if (x_bound && y_bound) {
         // Update Ball X & Y pos, and any paddle interaction
-        _updatePos(0, fr, 0);
-        _updatePos(1, fr, 0);
-        paddleBallCollision(pbc, fr);
+        _updatePos(0, frame_rate, 0);
+        _updatePos(1, frame_rate, 0);
+        paddleBallCollision(paddleCollision, frame_rate);
     } else if (!y_bound) {
         // Update Ball Y Pos (Bounce Off Wall)
         velocity[1] *= -1;
-        _updatePos(1, fr, 1);
+        _updatePos(1, frame_rate, 1);
     } else {
         // Check which back wall is hit, Left = -1, Right = 1
         int bwc = backWallCollision(winw);

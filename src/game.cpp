@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <memory>
+#include <ctime>
 #include "game.hpp"
 
 Game::Game(std::string title, int win_width, int win_height, bool AI) {
@@ -52,15 +53,22 @@ void Game::render() {
     SDL_RenderPresent(renderer);
 }
 
-void Game::update(float fr) {
+void Game::update(float frame_rate) {
     std::vector<float> ballAttr = ball->getBallAttr();
-    bool pbc1 = paddle1->paddleHit(ballAttr);
-    bool pbc2 = paddle2->paddleHit(ballAttr);
-    int bwc = ball->update(WIDTH, HEIGHT, fr, pbc1 || pbc2);
-    if (bwc < 0)
+    bool padOneCollision = paddle1->paddleHit(ballAttr);
+    bool padTwoCollision = paddle2->paddleHit(ballAttr);
+    int goalCollision = 0;
+    if ((clock() - time)/CLOCKS_PER_SEC >= 1)
+        goalCollision = ball->update(WIDTH, HEIGHT, frame_rate, padOneCollision || padTwoCollision);
+
+    if (goalCollision < 0) {
         scores->increaseScore(2);
-    else if (bwc > 0)
+        time = clock();
+    } else if (goalCollision > 0) {
         scores->increaseScore(1);
+        time = clock();
+    }
+
     if (scores->getScore(1) >= 11) {
         std::cout << "Player 1 Wins\n";
         running = false;
@@ -69,8 +77,8 @@ void Game::update(float fr) {
         running = false;
     }
     
-    paddle1->update(HEIGHT, fr);
-    paddle2->update(HEIGHT, fr);
+    paddle1->update(HEIGHT, frame_rate);
+    paddle2->update(HEIGHT, frame_rate);
 }
 
 bool Game::ended() {

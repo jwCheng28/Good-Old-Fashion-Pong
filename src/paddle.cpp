@@ -28,11 +28,11 @@ void Paddle::paddleEvent(std::vector<float>ballAttr) {
         weakAImovement(ballAttr);
 }
 
-void Paddle::update(int winh, float fr) {
+void Paddle::update(int winh, float frame_rate) {
     if (direction > 0 && pad_pos > 10)
-        pad_pos -= (20.0 * fr);
+        pad_pos -= (20.0 * frame_rate);
     else if (direction < 0 && (pad_pos + pos.h) < (winh - 10))
-        pad_pos += (20.0 * fr);
+        pad_pos += (20.0 * frame_rate);
     pos.y = pad_pos;
 }
 
