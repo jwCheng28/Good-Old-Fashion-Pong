@@ -4,7 +4,7 @@
 #include <ctime>
 #include "game.hpp"
 
-Game::Game(std::string title, int win_width, int win_height, bool AI) {
+Game::Game(const std::string& title, int win_width, int win_height, bool AI) {
     WIDTH = win_width, HEIGHT = win_height;
     if (!SDL_Init(SDL_INIT_VIDEO)) {
         TTF_Init();

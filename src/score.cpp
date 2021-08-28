@@ -35,7 +35,7 @@ void Score::_destroy(int user) {
     SDL_DestroyTexture(textures[user]);
 }
 
-void Score::_setDisplayPos(int user, std::vector<SDL_Surface*> surfaces) {
+void Score::_setDisplayPos(int user, std::vector<SDL_Surface*>& surfaces) {
     twidth = surfaces[user]->w;
     theight = surfaces[user]->h;
     text[user].w = twidth;
