@@ -3,6 +3,7 @@
 
 #include <string>
 #include <memory>
+#include <ctime>
 #include "ball.hpp"
 #include "paddle.hpp"
 #include "score.hpp"
@@ -12,6 +13,7 @@ class Game {
         int WIDTH;
         int HEIGHT;
         bool running = false;
+        clock_t time;
         SDL_Window* window;
         SDL_Renderer* renderer;
         SDL_Event event;
