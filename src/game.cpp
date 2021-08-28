@@ -33,7 +33,7 @@ Game::~Game() {
 
 void Game::eventHandler() {
     SDL_PollEvent(&event);
-    if (event.type == SDL_QUIT)
+    if (event.type == SDL_QUIT || (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE))
         running = false;
     paddle1->paddleEvent({});
     paddle2->paddleEvent(ball->getBallAttr());
