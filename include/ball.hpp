@@ -9,15 +9,15 @@ class Ball {
         std::vector<float> ball_pos;
         std::vector<float> velocity;
         SDL_Rect pos;
-        void _updatePos(int, float, bool);
+        void _updatePos(int ax, float frame_rate, bool randC);
     public:
-        Ball(int, int, SDL_Renderer*);
+        Ball(int x, int y, SDL_Renderer* renderer);
         ~Ball() = default;
         std::vector<float> getBallAttr();
-        void draw(SDL_Renderer*);
-        int backWallCollision(int);
-        void paddleBallCollision(bool, float);
-        int update(int, int, float, bool);
+        void draw(SDL_Renderer* renderer);
+        int backWallCollision(int winw);
+        void paddleBallCollision(bool paddleCollision, float frame_rate);
+        int update(int winw, int winh, float frame_rate, bool paddleCollision);
 };
 
 #endif

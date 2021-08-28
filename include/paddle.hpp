@@ -10,15 +10,15 @@ class Paddle {
         int player;
         float pad_pos;
         int direction;
-        void _padEve(const Uint8*, int, int);
+        void _padEve(const Uint8* keys, int upCode, int downCode);
     public:
-        Paddle(int, int, int, SDL_Renderer*);
+        Paddle(int user, int x, int y, SDL_Renderer* renderer);
         ~Paddle() = default;
-        void paddleEvent(std::vector<float>);
-        void update(int, float);
-        void draw(SDL_Renderer*);
-        bool paddleHit(std::vector<float>);
-        void weakAImovement(std::vector<float>);
+        void paddleEvent(const std::vector<float>& ballAttr);
+        void update(int winh, float frame_rate);
+        void draw(SDL_Renderer* renderer);
+        bool paddleHit(const std::vector<float>& ballAttr);
+        void weakAImovement(const std::vector<float>& ballAttr);
 };
 
 #endif

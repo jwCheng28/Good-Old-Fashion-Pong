@@ -15,15 +15,15 @@ class Score {
         std::vector<SDL_Surface*> surfaces;
         std::vector<SDL_Texture*> textures;
         std::vector<SDL_Rect> text;
-        void _destroy(int);
-        void _setDisplayPos(int, std::vector<SDL_Surface*>);
-        void _draw(int, SDL_Renderer*, bool);
+        void _destroy(int user);
+        void _setDisplayPos(int user, std::vector<SDL_Surface*>& surfaces);
+        void _draw(int user, SDL_Renderer* renderer, bool initial);
     public:
-        Score(int, SDL_Renderer*);
+        Score(int winw, SDL_Renderer* renderer);
         ~Score();
-        void increaseScore(int);
-        int getScore(int);
-        void draw(SDL_Renderer*, bool);
+        void increaseScore(int user);
+        int getScore(int user);
+        void draw(SDL_Renderer* renderer, bool initial);
 };
 
 #endif

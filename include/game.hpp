@@ -22,11 +22,11 @@ class Game {
         std::unique_ptr<Paddle> paddle2;
         std::unique_ptr<Score> scores;
     public:
-        Game(std::string, int, int, bool);
+        Game(const std::string& title, int win_width, int win_height, bool AI);
         ~Game();
         void eventHandler();
         void render();
-        void update(float);
+        void update(float frame_rate);
         bool ended();
 };
 
