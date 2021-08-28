@@ -19,18 +19,18 @@ Linux:
 
 ### Controls
 Player 1 (Left Side):
-    - w: UP
-    - s: DOWN
+ - w: UP
+ - s: DOWN
 
 Player 2 (Right Side):
-    - up arrow key: UP
-    - down arrow key: DOWN
+ - up arrow key: UP
+ - down arrow key: DOWN
 
 Press escape to quit.
 
 ### Modes
-    - run the program with `pong.exe` for the regular 2 player mode
-    - run the program with `pong.exe True` to play with a bot
+ - run the program with `pong.exe` for the regular 2 player mode
+ - run the program with `pong.exe True` to play with a bot
 
 ## To Do
 - Different Modes
