@@ -1,5 +1,5 @@
 CC = g++ -std=c++14 -Iinclude
-BUILD_FLAGS = -O3 -w
+BUILD_FLAGS = -O3 -w -s
 DEBUG_FLAGS = -Wall -g
 WINDOWS = -lmingw32
 SDL_FLAGS = -lSDL2main -lSDL2 -lSDL2_ttf
