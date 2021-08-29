@@ -21,11 +21,13 @@ class Game {
         std::unique_ptr<Paddle> paddle1;
         std::unique_ptr<Paddle> paddle2;
         std::unique_ptr<Score> scores;
+        int _winner(int maxPoints);
     public:
         Game(const std::string& title, int win_width, int win_height, bool AI);
         ~Game();
         void eventHandler();
         void render();
+        void renderEndScreen(int user);
         void update(float frame_rate);
         bool ended();
 };

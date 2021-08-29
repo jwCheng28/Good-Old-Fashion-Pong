@@ -53,6 +53,25 @@ void Game::render() {
     SDL_RenderPresent(renderer);
 }
 
+void Game::renderEndScreen(int user) {
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+    SDL_RenderClear(renderer);
+    
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+    paddle1->draw(renderer);
+    paddle2->draw(renderer);
+    scores->draw(renderer, 0);
+    scores->winner(user, renderer);
+    
+    SDL_RenderPresent(renderer);
+}
+
+int Game::_winner(int maxPoints) {
+    if (scores->getScore(1) >= maxPoints) return 1;
+    else if (scores->getScore(2) >= maxPoints) return 2;
+    else return 0;
+}
+
 void Game::update(float frame_rate) {
     std::vector<float> ballAttr = ball->getBallAttr();
     bool padOneCollision = paddle1->paddleHit(ballAttr);
@@ -68,12 +87,12 @@ void Game::update(float frame_rate) {
         scores->increaseScore(1);
         time = clock();
     }
-
-    if (scores->getScore(1) >= 11) {
-        std::cout << "Player 1 Wins\n";
-        running = false;
-    } else if (scores->getScore(2) >= 11) {
-        std::cout << "Player 2 Wins\n";
+    
+    int winner = _winner(11);
+    if (winner) {
+        renderEndScreen(winner);
+        auto cur = clock();
+        while ((clock()-cur)/CLOCKS_PER_SEC < 2);
         running = false;
     }
     

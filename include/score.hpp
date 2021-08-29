@@ -24,6 +24,7 @@ class Score {
         void increaseScore(int user);
         int getScore(int user);
         void draw(SDL_Renderer* renderer, bool initial);
+        void winner(int user, SDL_Renderer* renderer);
 };
 
 #endif
