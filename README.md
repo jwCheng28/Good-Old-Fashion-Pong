@@ -12,7 +12,7 @@ Dependencies:
 
 Windows:
  - If you're using windows and you have mingw installed, you can compile the program using the command `Build.bat` and run the executable `pong.exe`
- - If you have the g++ compiler, you can compile the program manually with `g++ -std=c++14 -Iinclude -w -O3 src/*.cpp -lmingw32 -lSDL2main -lSDL2 -lSDL2_ttf -o pong.exe`
+ - If you have the g++ compiler, you can compile the program manually with `g++ -std=c++14 -Iinclude -w -s -O3 src/*.cpp -lmingw32 -lSDL2main -lSDL2 -lSDL2_ttf -o pong.exe`
 
 Linux:
  - If you're using linux, simply use `make` and run the executable `pong.exe`
