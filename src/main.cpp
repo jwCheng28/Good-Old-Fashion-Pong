@@ -1,7 +1,5 @@
 #include <string>
 #include "game.hpp"
-#include <SDL2/SDL_thread.h>
-#include <SDL2/SDL.h>
 
 int main(int argc, char* args[]) {
     bool AI = (argc > 1 && args[1] == std::string("True"));
