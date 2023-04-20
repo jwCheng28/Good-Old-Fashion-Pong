@@ -19,6 +19,8 @@ Score::~Score() {
     _destroy(0);
     _destroy(1);
     TTF_CloseFont(font);
+    font = NULL;
+    TTF_Quit();
 }
 
 void Score::increaseScore(int user) {

@@ -12,7 +12,7 @@ Game::Game(const std::string& title, int win_width, int win_height, bool AI) {
                  title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 
                  WIDTH, HEIGHT, SDL_WINDOW_SHOWN);
         renderer = SDL_CreateRenderer(window, -1, 0);
-        
+
         ball = std::make_unique<Ball>((WIDTH - 20)/2, (HEIGHT - 20)/2, renderer);
         paddle1 = std::make_unique<Paddle>(1, 40, (HEIGHT - 150)/2, renderer);
         paddle2 = std::make_unique<Paddle>(AI ? 3 : 2, WIDTH - 70, (HEIGHT - 150)/2, renderer);
@@ -25,10 +25,12 @@ Game::Game(const std::string& title, int win_width, int win_height, bool AI) {
 }
 
 Game::~Game() {
-    SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
+    renderer = NULL;
+    window = NULL;
+
     SDL_Quit();
-    TTF_Quit();
 }
 
 void Game::eventHandler() {

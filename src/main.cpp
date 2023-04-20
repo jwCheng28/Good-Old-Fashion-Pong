@@ -7,7 +7,11 @@ int main(int argc, char* args[]) {
 
     while (!(game->ended())) {
         game->eventHandler();
+        #if WIN
         game->update(1.0/30.0);
+        #else
+        game->update(1.0/100.0);
+        #endif
         game->render();
     }
     delete game;
